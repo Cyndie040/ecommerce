@@ -13,6 +13,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
+import environ
+# import os
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+print(env('SECRET_KEY', default='Missing'))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,6 +37,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY')
+PAYSTACK_PUBLIC_KEY = env('PAYSTACK_PUBLIC_KEY')
 
 # Application definition
 

@@ -21,7 +21,8 @@ from .filters import ProductFilter
 
 # for searching  and ordering in django
 from rest_framework.filters import SearchFilter, OrderingFilter
-
+from payments.models import Payment
+from django.conf import settings
 
 
 class CustomPaginator(PageNumberPagination):
