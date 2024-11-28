@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 
 import environ
-# import os
+import os
 
 # Initialise environment variables
 env = environ.Env()
@@ -33,7 +33,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vg=n+(-0%0_%497y474c^&q=01w+5)maw*q1(582sh-2*^r@vx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = []
 
