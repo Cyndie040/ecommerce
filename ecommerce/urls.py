@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
@@ -30,18 +31,35 @@ from drf_yasg import openapi
 
 ...
 
-schema_view = get_schema_view(
-   openapi.Info(
-      title="Ecommerce_web API",
-      default_version='v1',
-      description="This is an API for ecommerce website",
-    #   terms_of_service="https://www.google.com/policies/terms/",
-    #   contact=openapi.Contact(email="contact@snippets.local"),
-    #   license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
-)
+if settings.DEBUG:
+    schema_view = get_schema_view(
+            openapi.Info(
+               title="Ecommerce_web API",
+               description="This is an API for ecommerce website",
+               default_version="1.0",
+               contact=openapi.Contact(email="admin@app.com"),
+               license=openapi.License(name="BSD License"),
+            ),
+            public=True,
+            permission_classes=(permissions.AllowAny,),
+        )
+else:
+    schema_view = get_schema_view(
+        openapi.Info(
+            title="Ecommerce_web API",
+            description="This is an API for ecommerce website",
+            default_version="1.0",
+            terms_of_service="https://www.google.com/policies/terms/",
+            contact=openapi.Contact(email="contact@snippets.local"),
+            license=openapi.License(name="BSD License"),
+        ),
+        public=True,
+        permission_classes=(permissions.AllowAny,),
+        url="https://web-ecommerce-site.up.railway.app/"
+    )
+
+
+
 
 router=DefaultRouter()
 
