@@ -16,11 +16,11 @@ class Order(models.Model):
         (PAYMENT_STATUS_COMPLETE, 'Completed'),
         (PAYMENT_STATUS_FAILED, 'Failed'),
     ]
-    first_name = models.CharField(max_length=200, default=True)
-    last_name = models.CharField(max_length=255, default=True)
-    email = models.EmailField(max_length=50, default=True)
-    address = models.CharField(max_length=255, default=True)
-    phone_number = models.CharField(max_length=20, default=True)
+    first_name = models.CharField(max_length=200, default=None)
+    last_name = models.CharField(max_length=255, default=None)
+    email = models.EmailField(max_length=50, default=None)
+    address = models.CharField(max_length=255, default=None)
+    phone_number = models.CharField(max_length=20, default=None)
     state = models.CharField(max_length=200, default=True)
     placed_at = models.DateTimeField(auto_now_add=True)
     pending_status = models.CharField(max_length=55, choices=PAYMENT_STATUS_CHOICES, default=PAYMENT_STATUS_PENDING)

@@ -267,13 +267,18 @@ class ProductListCreateView(generics.GenericAPIView,
                          mixins.CreateModelMixin):
     
     """
-#         a view for listing all products
-#     """
+         a view for listing all products
+     """
     
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     pagination_class = CustomPaginator
     queryset = Product.objects.all()
+    # for filtering, searching and ordering
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = ProductFilter
+    search_fields = ['name', 'description']
+    ordering_fields = ['price', 'created_at']
     
     @swagger_auto_schema(
         operation_summary='Listing all products',
@@ -311,6 +316,10 @@ class ProductRetrieveUpdateDeleteView(generics.GenericAPIView,
     serializer_class = ProductSerializer
     permission_classes = [AuthorOrReadOnly]
     queryset = Product.objects.all()
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = ProductFilter
+    search_fields = ['name', 'description']
+    ordering_fields = ['price', 'created_at']
     
     @swagger_auto_schema(
         operation_summary='This endpoint retrieves product by id',
