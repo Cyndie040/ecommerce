@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-vg=n+(-0%0_%497y474c^&q=01w+5)maw*q1(582sh-2*^r@vx
 # DEBUG = True
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['web-ecommerce-site.up.railway.app', '127.0.0:1']
 
 PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY')
 PAYSTACK_PUBLIC_KEY = env('PAYSTACK_PUBLIC_KEY')
